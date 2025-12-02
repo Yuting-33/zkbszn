@@ -1520,3 +1520,453 @@ body {
 .video-playlist::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(135deg, #8b0000, #c41e3a);
 }
+
+/* 烛光缅怀区域 - 响应式优化 */
+.candle-memorial {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+    padding: clamp(30px, 5vw, 60px) clamp(15px, 3vw, 20px);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: clamp(10px, 2vw, 20px);
+    margin: clamp(20px, 4vw, 40px) clamp(10px, 2vw, 20px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.candle-memorial::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(196, 30, 58, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.memorial-header {
+    margin-bottom: clamp(25px, 4vw, 50px);
+    position: relative;
+    z-index: 2;
+}
+
+.memorial-header h3 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: #fff;
+    margin-bottom: clamp(10px, 2vw, 15px);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    font-weight: 700;
+    letter-spacing: clamp(1px, 0.2vw, 2px);
+    line-height: 1.2;
+}
+
+.memorial-subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: rgba(255,255,255,0.7);
+    font-style: italic;
+    letter-spacing: clamp(0.5px, 0.1vw, 1px);
+    line-height: 1.4;
+}
+
+/* 蜡烛容器 - 响应式 */
+.candles-container {
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    padding: 0 clamp(10px, 2vw, 20px);
+}
+
+.candle-altar {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: clamp(20px, 5vw, 80px);
+    margin-bottom: clamp(30px, 4vw, 40px);
+    min-height: clamp(150px, 20vh, 200px);
+    padding: clamp(20px, 3vw, 40px) clamp(15px, 2vw, 20px);
+    background: rgba(255,255,255,0.02);
+    border-radius: clamp(10px, 2vw, 20px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+
+/* 蜡烛包装器 - 响应式 */
+.candle-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(10px, 2vw, 15px);
+    transition: transform 0.3s ease;
+    flex: 0 0 auto;
+    min-width: 0;
+}
+
+.candle-wrapper:hover {
+    transform: translateY(-3px);
+}
+
+/* 蜡烛主体 - 响应式尺寸 */
+.candle {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+}
+
+.candle-body {
+    width: clamp(30px, 4vw, 50px);
+    height: clamp(50px, 8vw, 80px);
+    background: linear-gradient(135deg, #f4e4c1 0%, #e8d4a1 50%, #d4c4a1 100%);
+    border-radius: clamp(2px, 0.5vw, 4px);
+    position: relative;
+    box-shadow: 
+        inset 0 2px 5px rgba(0,0,0,0.2),
+        0 3px 10px rgba(0,0,0,0.3);
+}
+
+.candle-top {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(6px, 1.5vw, 10px);
+    height: clamp(5px, 1vw, 8px);
+    background: #2a2a2a;
+    border-radius: 50%;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* 烛芯 - 响应式 */
+.wick {
+    position: absolute;
+    bottom: clamp(50px, 8vw, 80px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(2px, 0.4vw, 3px);
+    height: clamp(15px, 3vw, 20px);
+    background: linear-gradient(to top, #1a1a1a, #333);
+    border-radius: 1px;
+    z-index: 2;
+}
+
+/* 火焰效果 - 响应式 */
+.flame {
+    position: absolute;
+    bottom: clamp(60px, 10vw, 95px);
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.candle.lit .flame {
+    opacity: 1;
+}
+
+.flame-inner {
+    width: clamp(10px, 2vw, 15px);
+    height: clamp(18px, 3vw, 25px);
+    background: radial-gradient(ellipse at bottom, #fff 0%, #ffeb3b 30%, #ff9800 70%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: flickerInner 1.5s ease-in-out infinite alternate;
+}
+
+.flame-outer {
+    width: clamp(18px, 3vw, 25px);
+    height: clamp(25px, 4vw, 35px);
+    background: radial-gradient(ellipse at bottom, rgba(255,152,0,0.8) 0%, rgba(244,67,54,0.6) 50%, transparent 80%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: absolute;
+    bottom: clamp(-3px, -0.5vw, -5px);
+    left: 50%;
+    transform: translateX(-50%);
+    animation: flickerOuter 2s ease-in-out infinite alternate;
+}
+
+.flame-glow {
+    width: clamp(40px, 6vw, 60px);
+    height: clamp(40px, 6vw, 60px);
+    background: radial-gradient(circle, rgba(255,152,0,0.4) 0%, rgba(255,87,34,0.2) 40%, transparent 70%);
+    border-radius: 50%;
+    position: absolute;
+    bottom: clamp(-15px, -2vw, -20px);
+    left: 50%;
+    transform: translateX(-50%);
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+/* 蜡烛标签 - 响应式 */
+.candle-label {
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+    color: rgba(255,255,255,0.6);
+    font-weight: 500;
+    letter-spacing: clamp(1px, 0.2vw, 2px);
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px;
+}
+
+.candle.lit + .candle-label {
+    color: rgba(255,255,255,0.9);
+    text-shadow: 0 0 10px rgba(255,152,0,0.5);
+}
+
+/* 统计信息 - 响应式布局 */
+.candle-stats {
+    display: flex;
+    justify-content: center;
+    gap: clamp(20px, 3vw, 40px);
+    flex-wrap: wrap;
+}
+
+.stats-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: clamp(10px, 2vw, 15px) clamp(15px, 3vw, 25px);
+    background: rgba(255,255,255,0.05);
+    border-radius: clamp(8px, 1.5vw, 15px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    min-width: 0;
+    flex: 0 1 auto;
+}
+
+.stats-number {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #c41e3a;
+    margin-bottom: clamp(3px, 1vw, 5px);
+    text-shadow: 0 0 10px rgba(196,30,58,0.5);
+    line-height: 1;
+}
+
+.stats-label {
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* 点亮时的光晕效果 - 响应式 */
+.candle.lit::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(60px, 8vw, 100px);
+    height: clamp(60px, 8vw, 100px);
+    background: radial-gradient(circle, rgba(255,152,0,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* 火焰动画保持不变 */
+@keyframes flickerInner {
+    0% { 
+        transform: translateX(-50%) scale(1) rotate(-2deg);
+        filter: brightness(1);
+    }
+    50% { 
+        transform: translateX(-50%) scale(1.1) rotate(2deg);
+        filter: brightness(1.2);
+    }
+    100% { 
+        transform: translateX(-50%) scale(0.95) rotate(-1deg);
+        filter: brightness(0.9);
+    }
+}
+
+@keyframes flickerOuter {
+    0% { 
+        transform: translateX(-50%) scale(1) rotate(1deg);
+        opacity: 0.8;
+    }
+    50% { 
+        transform: translateX(-50%) scale(1.15) rotate(-1deg);
+        opacity: 1;
+    }
+    100% { 
+        transform: translateX(-50%) scale(0.9) rotate(0.5deg);
+        opacity: 0.7;
+    }
+}
+
+@keyframes glow {
+    0% { 
+        transform: translateX(-50%) scale(1);
+        opacity: 0.6;
+    }
+    50% { 
+        transform: translateX(-50%) scale(1.2);
+        opacity: 0.8;
+    }
+    100% { 
+        transform: translateX(-50%) scale(0.9);
+        opacity: 0.5;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+/* 响应式断点优化 */
+
+/* 大屏幕 (1200px+) */
+@media (min-width: 1200px) {
+    .candle-memorial {
+        margin: 40px auto;
+        max-width: 1000px;
+    }
+    
+    .candle-altar {
+        gap: 80px;
+    }
+}
+
+/* 中等屏幕 (768px - 1199px) */
+@media (max-width: 1199px) and (min-width: 768px) {
+    .candle-altar {
+        gap: 50px;
+    }
+    
+    .candle-stats {
+        gap: 30px;
+    }
+}
+
+/* 小屏幕 (480px - 767px) */
+@media (max-width: 767px) {
+    .candle-altar {
+        gap: 30px;
+        padding: 20px 15px;
+        min-height: 150px;
+    }
+    
+    .candle-stats {
+        gap: 20px;
+    }
+    
+    .stats-item {
+        padding: 10px 15px;
+    }
+    
+    .memorial-header {
+        margin-bottom: 30px;
+    }
+}
+
+/* 超小屏幕 (320px - 479px) */
+@media (max-width: 479px) {
+    .candle-memorial {
+        margin: 15px 10px;
+        padding: 25px 15px;
+    }
+    
+    .candle-altar {
+        gap: 20px;
+        padding: 15px 10px;
+        min-height: 120px;
+    }
+    
+    .candle-wrapper {
+        gap: 8px;
+    }
+    
+    .candle-stats {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .stats-item {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .memorial-header h3 {
+        margin-bottom: 8px;
+    }
+    
+    .memorial-subtitle {
+        font-size: 0.9rem;
+    }
+}
+
+/* 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+    .candle-wrapper:hover {
+        transform: none;
+    }
+    
+    .candle-wrapper:active {
+        transform: scale(0.95);
+    }
+}
+
+/* 高分辨率屏幕优化 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .candle-body {
+        background: linear-gradient(135deg, #f6e6d1 0%, #ead6a1 50%, #d6c6a1 100%);
+    }
+    
+    .flame-inner {
+        background: radial-gradient(ellipse at bottom, #ffffff 0%, #fff3b3 30%, #ffa500 70%);
+    }
+}
+
+/* 横屏模式优化 */
+@media (orientation: landscape) and (max-height: 600px) {
+    .candle-memorial {
+        padding: 20px 15px;
+        margin: 15px 10px;
+    }
+    
+    .memorial-header {
+        margin-bottom: 20px;
+    }
+    
+    .candle-altar {
+        min-height: 100px;
+        padding: 15px;
+        gap: 40px;
+    }
+    
+    .candle-body {
+        height: 50px;
+    }
+    
+    .wick {
+        bottom: 50px;
+        height: 15px;
+    }
+    
+    .flame {
+        bottom: 60px;
+    }
+}
+
