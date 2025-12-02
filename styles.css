@@ -1,4 +1,4 @@
-/* styles.css - 响应式优化版本 */
+/* styles.css - 完整修复版本 */
 
 /* 基础样式保持不变 */
 * {
@@ -215,40 +215,46 @@ body {
     z-index: 2;
 }
 
-/* 轮播按钮基础样式优化 */
+/* ==================== 轮播按钮完全重置 ==================== */
+
+/* 基础轮播按钮样式 */
 .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.9);
     border: none;
-    font-size: 1.4rem; /* 从2rem改为1.4rem */
-    padding: 8px 12px; /* 从10px 15px改为8px 12px */
+    font-size: 1.2rem;
     cursor: pointer;
-    border-radius: 8px; /* 从5px改为8px，更圆润 */
+    border-radius: 50%;
     transition: all 0.3s ease;
     z-index: 100;
-    width: 36px; /* 添加固定宽度 */
-    height: 36px; /* 添加固定高度 */
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .carousel-btn:hover {
     background: white;
-    transform: translateY(-50%) scale(1.08);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.carousel-btn:active {
+    transform: translateY(-50%) scale(0.95);
 }
 
 .prev { 
-    left: 12px; /* 从20px改为12px */
+    left: 8px; 
 }
 .next { 
-    right: 12px; /* 从20px改为12px */
+    right: 8px; 
 }
-
 
 /* 英雄卡片响应式网格 */
 .heroes-grid {
@@ -724,6 +730,16 @@ body {
     .spirit-item p {
         font-size: 0.85rem;
     }
+    
+    /* 轮播按钮平板适配 */
+    .carousel-btn {
+        width: 26px;
+        height: 26px;
+        font-size: 1.1rem;
+    }
+    
+    .prev { left: 6px; }
+    .next { right: 6px; }
 }
 
 /* 小平板设备 (768px - 991px) */
@@ -864,7 +880,7 @@ body {
     /* 轮播图 */
     .carousel-container {
         height: 300px;
-        margin: 0 15px;
+        margin: 0 5px;
     }
     
     .carousel-caption {
@@ -880,15 +896,25 @@ body {
         font-size: 0.9rem;
     }
     
+    /* 轮播按钮手机适配 */
     .carousel-btn {
-        font-size: 1.2rem;
-        padding: 6px 10px;
-        width: 32px;
-        height: 32px;
+        width: 24px;
+        height: 24px;
+        font-size: 1rem;
+        background: rgba(255,255,255,0.95);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
     
-    .prev { left: 10px; }
-    .next { right: 10px; }
+    .carousel-btn:hover {
+        transform: translateY(-50%) scale(1.05);
+    }
+    
+    .prev { 
+        left: 5px; 
+    }
+    .next { 
+        right: 5px; 
+    }
     
     /* 英雄卡片 */
     .heroes-grid {
@@ -1034,6 +1060,7 @@ body {
     
     .carousel-container {
         height: 250px;
+        margin: 0 4px;
     }
     
     .heroes-grid {
@@ -1067,6 +1094,20 @@ body {
         font-size: 1rem;
     }
     
+    /* 轮播按钮小手机适配 */
+    .carousel-btn {
+        width: 22px;
+        height: 22px;
+        font-size: 0.9rem;
+    }
+    
+    .prev { 
+        left: 4px; 
+    }
+    .next { 
+        right: 4px; 
+    }
+    
     .playlist-items {
         grid-template-columns: 1fr;
     }
@@ -1093,8 +1134,18 @@ body {
     }
     
     .carousel-btn {
-        transform: translateY(-50%) scale(1.2);
-        padding: 15px 20px;
+        transform: translateY(-50%) scale(1.0);
+        background: rgba(255,255,255,0.95);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    
+    .carousel-btn:hover {
+        transform: translateY(-50%) scale(1.0);
+    }
+    
+    .carousel-btn:active {
+        transform: translateY(-50%) scale(0.9);
+        background: white;
     }
     
     .nav-link:hover {
@@ -1134,6 +1185,12 @@ body {
     .nav-link {
         border: 1px solid rgba(255,255,255,0.3);
     }
+    
+    .carousel-btn {
+        background: white;
+        border: 2px solid #000;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
 }
 
 /* 减少动画模式支持 */
@@ -1147,6 +1204,21 @@ body {
     }
 }
 
+/* 安全区域支持 */
+@supports (padding: max(0px)) {
+    .carousel-container {
+        margin-left: max(5px, env(safe-area-inset-left));
+        margin-right: max(5px, env(safe-area-inset-right));
+    }
+    
+    .carousel-btn.prev {
+        left: max(5px, env(safe-area-inset-left));
+    }
+    
+    .carousel-btn.next {
+        right: max(5px, env(safe-area-inset-right));
+    }
+}
 
 /* 移动端播放列表修复 */
 @media (max-width: 767px) {
@@ -1340,89 +1412,4 @@ body {
 
 .video-playlist::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(135deg, #8b0000, #c41e3a);
-}
-
-/* 手机设备优化 (480px - 767px) */
-@media (max-width: 767px) {
-    /* ... 其他样式保持不变 ... */
-    
-    /* 轮播图按钮优化 */
-    .carousel-btn {
-        font-size: 1.1rem;
-        padding: 6px 10px;
-        width: 30px;
-        height: 30px;
-        border-radius: 6px;
-        background: rgba(255,255,255,0.9);
-    }
-    
-    .carousel-btn:hover {
-        transform: translateY(-50%) scale(1.05);
-    }
-    
-    .prev { 
-        left: 8px; 
-    }
-    .next { 
-        right: 8px; 
-    }
-    
-    /* 轮播容器调整 */
-    .carousel-container {
-        margin: 0 10px; /* 添加左右边距 */
-        height: 300px;
-    }
-    
-    .carousel-caption {
-        padding: 12px; /* 减少内边距 */
-    }
-    
-    .carousel-caption h3 {
-        font-size: 1rem;
-        margin-bottom: 6px;
-    }
-    
-    .carousel-caption p {
-        font-size: 0.85rem;
-    }
-}
-
-/* 小手机设备优化 (320px - 479px) */
-@media (max-width: 479px) {
-    /* ... 其他样式保持不变 ... */
-    
-    /* 轮播按钮进一步缩小 */
-    .carousel-btn {
-        font-size: 1rem;
-        padding: 5px 8px;
-        width: 26px;
-        height: 26px;
-        border-radius: 5px;
-    }
-    
-    .prev { 
-        left: 6px; 
-    }
-    .next { 
-        right: 6px; 
-    }
-    
-    .carousel-container {
-        margin: 0 8px;
-        height: 250px;
-    }
-}
-
-/* 触摸设备优化 */
-@media (hover: none) and (pointer: coarse) {
-    .carousel-btn {
-        transform: translateY(-50%) scale(1.0); /* 移除hover缩放 */
-        background: rgba(255,255,255,0.95);
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-    
-    .carousel-btn:active {
-        transform: translateY(-50%) scale(0.95);
-        background: white;
-    }
 }
