@@ -382,6 +382,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: center;
 }
 
 .spirit-item::before {
@@ -406,9 +407,10 @@ body {
 }
 
 .spirit-icon {
-    font-size: 2.5rem;
+    font-size: 2.0rem;
     margin-bottom: 15px;
     display: inline-block;
+    text-align: center; /* 确保图标居中 */
     animation: pulse 2s infinite;
 }
 
