@@ -166,15 +166,23 @@ body {
 }
 
 /* 轮播图响应式 */
+#history .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .carousel-container {
     position: relative;
     max-width: 900px;
-    margin: 0 auto;
+    width: 100%;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     height: 500px;
 }
+
+
 
 .carousel {
     position: relative;
@@ -1019,7 +1027,7 @@ body {
     /* 轮播图 */
     .carousel-container {
         height: 300px;
-        margin: 0 5px;
+        margin: 0 auto;
     }
     
     .carousel-caption {
@@ -1327,7 +1335,7 @@ body {
     
     .carousel-container {
         height: 250px;
-        margin: 0 4px;
+        margin: 0 auto;
     }
     
     .heroes-grid {
