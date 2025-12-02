@@ -871,10 +871,29 @@ body {
     .carousel-btn {
         font-size: 1.2rem;
         padding: 6px 10px;
+        width: 32px;
+        height: 32px;
     }
     
     .prev { left: 10px; }
     .next { right: 10px; }
+
+    /* 超小屏幕进一步缩小 */
+@media (max-width: 480px) {
+    .carousel-btn {
+        font-size: 1rem;
+        padding: 5px 8px;
+        width: 28px;
+        height: 28px;
+    }
+    
+    .prev { 
+        left: 8px; 
+    }
+    .next { 
+        right: 8px; 
+    }
+}
     
     /* 英雄卡片 */
     .heroes-grid {
