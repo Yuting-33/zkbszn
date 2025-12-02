@@ -324,6 +324,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+
 let litCount = 0;
 
 function lightCandle(candleElement) {
@@ -435,3 +436,4 @@ document.head.appendChild(style);
 document.addEventListener('DOMContentLoaded', function() {
     loadCandleStates();
 });
+
