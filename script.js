@@ -178,8 +178,26 @@ function waitForDOM() {
     }
 }
 
+// 字体加载检测
+function ensureFontsLoaded() {
+    // 检查字体是否加载完成
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function() {
+            console.log('字体加载完成');
+            // 强制重新渲染文本
+            const textElements = document.querySelectorAll('.item-info h4, .item-info p, .playlist-header h3');
+            textElements.forEach(el => {
+                el.style.display = 'none';
+                el.offsetHeight; // 触发重排
+                el.style.display = '';
+            });
+        });
+    }
+}
+
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', function() {
+    ensureFontsLoaded();
     console.log('页面加载完成，开始初始化...');
     
     // 初始化轮播
