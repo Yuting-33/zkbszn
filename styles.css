@@ -411,7 +411,7 @@ body {
     margin-bottom: 15px;
     display: inline-block;
     text-align: center; /* 确保图标居中 */
-    animation: pulse 2s infinite;
+    /*animation: pulse 2s infinite;*/
 }
 
 @keyframes pulse {
